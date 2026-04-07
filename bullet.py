@@ -2,7 +2,7 @@ import pygame
 
 from pygame.sprite import Sprite
 
-class Bullbet(Sprite):
+class Bullet(Sprite):
     """ A class to manage bullets fired from the ship """
     def __init__(self, ai_game):
         """ Create a bullet object at the ship's current position """
@@ -17,5 +17,5 @@ class Bullbet(Sprite):
 
         # Store the bullet's position as a float
         self.y = float(self.rect.y)
-        
+
     
