@@ -31,14 +31,7 @@ class AlienInvasion:
         while True:
             self._check_events()
             self.ship.update()
-            self.bullets.update()
-
-            # Get rid of bullets that have disappeared
-            for bullet in self.bullets.copy():
-                if bullet.rect.bottom <= 0:
-                    self.bullets.remove(bullet)
-            print(len(self.bullets))
-
+            self._update_bullets()
             self._update_screen()
             self.clock.tick(60)
 
@@ -76,6 +69,17 @@ class AlienInvasion:
             new_bullet = Bullet(self)
             self.bullets.add(new_bullet)
 
+    def _update_bullets(self):
+        """ Update position of the bullets and get rid of the old bullet """
+
+        # Update bullet positions
+        self.bullets.update()
+        
+        """ Create a new bullet and add it to the bullets group """
+        for bullet in self.bullets.copy():
+            if bullet.rect.bottom <= 0:
+                self.bullets.remove(bullet)
+    
     def _update_screen(self):
         """ Update images on the screen, and flip to the new screen """
         self.screen.fill(self.settings.bg_color)
